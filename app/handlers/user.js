@@ -24,7 +24,9 @@ async function createUser (request, response, next) {
 
   try {
     const newUser = await User.createUser(new User(request.body))
-    return response.status(201).json(newUser)
+    return response
+      .status(201)
+      .json({ email: newUser.email, success: true, error: null })
   } catch (err) {
     return next(err)
   }
@@ -32,12 +34,12 @@ async function createUser (request, response, next) {
 
 /**
  * Get a single user
- * @param {String} name - the name of the User to retrieve
+ * @param {String} email - the email of the User to retrieve
  */
 async function readUser (request, response, next) {
-  const { name } = request.params
+  const { email } = request.params
   try {
-    const user = await User.readUser(name)
+    const user = await User.readUser(email)
     return response.json(user)
   } catch (err) {
     return next(err)

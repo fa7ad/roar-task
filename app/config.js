@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'i haz a secur33ty'
 
 // database configs
 
-let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://mongodb/boilerplate'
+let MONGODB_URI = process.env.MONGODB_URI || 'mongodb://mongodb/roar'
 if (ENV === 'test') {
   MONGODB_URI = global.__MONGO_URI__
 }

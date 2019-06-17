@@ -18,7 +18,7 @@ router
 
 /* Single User by Name Route */
 router
-  .route('/:name')
+  .route('/:email')
   .get(jwtVerify, readUser)
   .patch(jwtVerify, updateUser)
   .delete(jwtVerify, guard.check('admin'), deleteUser)

@@ -96,7 +96,7 @@ userSchema.methods = {
    * @param {String} candidatePassword - the password to be tested
    * @returns {Promise<boolean, Error>}
    */
-  async comparePassword (candidatePassword, next) {
+  comparePassword (candidatePassword) {
     return compare(candidatePassword, this.password)
   }
 }

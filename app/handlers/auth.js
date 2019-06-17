@@ -8,16 +8,17 @@ const { JWT_SECRET } = require('../config')
  * Handle a login attempt
  */
 async function loginUser (request, response, next) {
-  const { email, password } = request.body
   try {
-    const user = await User.readUser(email)
+    const { email, password } = request.body
+    const user = await User.findOne({ email })
     const isMatch = await user.comparePassword(password)
     if (!isMatch) {
       throw new APIError(401, 'Unauthorized', 'Wrong email/password given.')
     }
     const token = jwt.sign(
       { email, scope: user.admin ? 'admin' : '' },
-      JWT_SECRET
+      JWT_SECRET,
+      { expiresIn: 15 * 60 }
     )
 
     response.json({
@@ -30,4 +31,20 @@ async function loginUser (request, response, next) {
   }
 }
 
-module.exports = { loginUser }
+/**
+ * Logout a user and invalidate their token
+ */
+
+async function logoutUser (req, res, next) {
+  try {
+    // TODO: implement invalidation logic
+    res.json({
+      success: true,
+      error: null
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+module.exports = { loginUser, logoutUser }

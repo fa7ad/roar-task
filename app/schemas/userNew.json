@@ -7,7 +7,7 @@
       "type": "string"
     },
     "password": {
-      "type": "integer"
+      "type": "string"
     },
     "admin": {
       "type": "boolean",

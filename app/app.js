@@ -6,7 +6,7 @@ global.Promise = require('bluebird')
 // app imports
 const { connectToDatabase } = require('./config')
 const { errorHandler } = require('./handlers')
-const { usersRouter } = require('./routers')
+const { usersRouter, authRouter } = require('./routers')
 
 // global constants
 dotenv.config()
@@ -28,6 +28,7 @@ app.use(bodyParserHandler) // error handling specific to body parser only
 
 // response headers setup; CORS
 app.use(cors())
+app.use(authRouter)
 
 app.use('/users', usersRouter)
 
