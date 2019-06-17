@@ -1,4 +1,6 @@
 exports.errorHandler = require('./error')
+exports.authHandler = require('./auth')
 exports.userHandler = require('./user')
 exports.usersHandler = require('./users')
-exports.authHandler = require('./auth')
+exports.questionHandler = require('./question')
+exports.questionsHandler = require('./questions')

@@ -6,7 +6,7 @@ global.Promise = require('bluebird')
 // app imports
 const { connectToDatabase } = require('./config')
 const { errorHandler } = require('./handlers')
-const { usersRouter, authRouter } = require('./routers')
+const { usersRouter, authRouter, questionsRouter } = require('./routers')
 
 // global constants
 dotenv.config()
@@ -31,6 +31,7 @@ app.use(cors())
 app.use(authRouter)
 
 app.use('/users', usersRouter)
+app.use('/questions', questionsRouter)
 
 // catch-all for 404 "Not Found" errors
 app.get('*', fourOhFourHandler)
