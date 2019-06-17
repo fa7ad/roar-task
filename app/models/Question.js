@@ -5,15 +5,10 @@ const { APIError } = require('../helpers')
 // globals
 const Schema = mongoose.Schema
 
-const responseSchema = new Schema({
-  email: String,
-  response: String
-})
-
 const questionSchema = new Schema({
   id: String,
   question: String,
-  responses: [responseSchema]
+  responses: [Schema.Types.Mixed]
 })
 
 questionSchema.statics = {
@@ -23,6 +18,9 @@ questionSchema.statics = {
    * @returns {Promise<Question, APIError>}
    */
   async createQuestion (newQuestion) {
+    if (!newQuestion.id) {
+      newQuestion.id = `#${+new Date()}${(Math.random() * 1e3) | 0}`
+    }
     const duplicate = await this.findOne({ id: newQuestion.id })
     if (duplicate) {
       throw new APIError(
@@ -91,6 +89,7 @@ questionSchema.statics = {
    * @returns {Promise<Question, APIError>}
    */
   async updateQuestion (id, questionUpdate) {
+    console.log(questionUpdate)
     const question = await this.findOneAndUpdate({ id }, questionUpdate, {
       new: true
     })
@@ -104,12 +103,6 @@ questionSchema.statics = {
     return question.toObject()
   }
 }
-
-questionSchema.pre('save', async function () {
-  var question = this
-  if (!question.isModified('id')) return
-  question.id = '#' + +new Date() + ((Math.random() * 1e3) | 0)
-})
 
 /* Transform with .toObject to remove __v and _id from response */
 if (!questionSchema.options.toObject) questionSchema.options.toObject = {}

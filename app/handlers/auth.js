@@ -24,7 +24,8 @@ async function loginUser (request, response, next) {
     response.json({
       success: true,
       error: null,
-      token
+      token,
+      scope: user.admin ? 'admin' : ''
     })
   } catch (err) {
     next(err)

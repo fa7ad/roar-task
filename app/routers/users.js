@@ -1,5 +1,8 @@
 const express = require('express')
-const guard = require('express-jwt-permissions')()
+const guard = require('express-jwt-permissions')({
+  requestProperty: 'user',
+  permissionsProperty: 'scope'
+})
 
 // app imports
 const { userHandler, usersHandler } = require('../handlers')
