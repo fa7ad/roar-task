@@ -12,9 +12,9 @@ app.listen(PORT, () => {
   })
 
   const options = {
-    hostname: 'flaviocopes.com',
-    port: 443,
-    path: '/todos',
+    hostname: 'localhost',
+    port: PORT,
+    path: '/users',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

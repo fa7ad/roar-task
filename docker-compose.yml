@@ -22,6 +22,19 @@ services:
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
+  react:
+    build: ./client
+    command: yarn start
+    depends_on:
+      - app
+    ports:
+      - '3000:3000'
+    links:
+      - app
+    volumes:
+      - ./client:/home/nodejs/app
+      - ./client/node_modules:/home/nodejs/app/node_modules
+
   mongodb:
     image: mongo:4
     command: mongod
