@@ -1,16 +1,17 @@
 {
-  "extends": "eslint:recommended",
-  "env": {
-    "es6": true,
-    "node": true,
-    "browser": false,
-    "jest": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
-  "rules": {
-    "no-unused-vars": "warn",
-    "no-console": "off"
-  }
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "standard",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "rules": {
+    }
 }

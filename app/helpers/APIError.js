@@ -6,26 +6,26 @@ class APIError extends Error {
    * @param {String} title - The title corresponding to the Status Code (e.g. Bad Request)
    * @param {String} message - Specific information about what caused the error
    */
-  constructor(
+  constructor (
     status = 500,
     title = 'Internal Server Error',
     message = 'An unknown server error occurred.'
   ) {
-    super(message);
-    this.status = status;
-    this.title = title;
-    this.message = message;
+    super(message)
+    this.status = status
+    this.title = title
+    this.message = message
   }
-  toJSON() {
-    const { status, title, message } = this;
+  toJSON () {
+    const { status, title, message } = this
     return {
       error: {
         status,
         title,
         message
       }
-    };
+    }
   }
 }
 
-module.exports = APIError;
+module.exports = APIError

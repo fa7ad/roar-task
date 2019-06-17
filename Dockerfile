@@ -14,7 +14,7 @@ RUN mkdir -p /home/nodejs/app
 WORKDIR /home/nodejs/app
 COPY . /home/nodejs/app
 
-RUN npm install --production --quiet
+RUN yarn install
 
 EXPOSE 5000
 

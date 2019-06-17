@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "type": "string"
+    },
+    "password": {
+      "type": "integer"
+    },
+    "admin": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["email", "password"]
+}
