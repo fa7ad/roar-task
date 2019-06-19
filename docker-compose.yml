@@ -10,11 +10,11 @@ services:
     ports:
       - '5000:5000'
     volumes:
-      - .:/home/nodejs/app
-      - /home/nodejs/app/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
 
   nginx:
-    image: nginx:1.14
+    image: nginx
     links:
       - app
     ports:
@@ -24,7 +24,7 @@ services:
 
   react:
     build: ./client
-    command: yarn start
+    command: npm start
     depends_on:
       - app
     ports:
@@ -32,11 +32,11 @@ services:
     links:
       - app
     volumes:
-      - ./client:/home/nodejs/app
-      - ./client/node_modules:/home/nodejs/app/node_modules
+      - ./client:/home/node
+      - ./client/node_modules:/home/node/node_modules
 
   mongodb:
-    image: mongo:4
+    image: mongo
     command: mongod
     ports:
       - '27017:27017'
